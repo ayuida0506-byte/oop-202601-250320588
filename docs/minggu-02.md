@@ -21,7 +21,7 @@ Bobot: Quiz 2%, Praktikum 1%.
 
 - Apakah kode dinormalisasi (trim, huruf besar)? Catat di asumsi bila ya.
 
-## Tes
+## Tes                                                                      
 
 `core/src/test/java/id/ac/upb/asetpinjam/Minggu02AsetTest.java`
 

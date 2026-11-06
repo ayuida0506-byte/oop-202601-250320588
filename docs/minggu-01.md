@@ -7,6 +7,7 @@ Bobot: Quiz 2%, Praktikum 3%, Observasi 1%.
 - Membedakan paradigma prosedural, OOP, dan functional lewat satu program kecil yang sama.
 - Menyiapkan JDK 21, Maven, Git, dan repo.
 
+
 ## Yang dikerjakan
 
 - `core/src/main/java/id/ac/upb/asetpinjam/minggu01/HelloProsedural.java`, `HelloOOP.java`, `HelloFungsional.java`: isi `TODO`.

@@ -1,19 +1,18 @@
-# Catatan Minggu NN: (topik)
+# Catatan Minggu 1 MD:paradigna pemrograman dan setup
 
-Salin berkas ini menjadi `catatan/minggu-NN.md` (NN dua digit, misalnya `minggu-07.md`).
 
 ## Yang saya kerjakan
-(2-5 kalimat dengan bahasa Anda sendiri)
+(ga ada hampir semua ai)
 
 ## Keputusan desain
-(Apa yang Anda putuskan dan kenapa. Rujuk docs/asumsi.md bila perlu.)
+( Atribut dibuat private(enkapsulasi) ,tidak ada setter,data dikirim lewat constructor)
 
 ## Kendala
-(Apa yang sulit dan bagaimana Anda mengatasinya)
+(masukin codingnya ga tepat jadi eror mulu)
 
 ## Penggunaan AI
-- Alat yang dipakai: (nama, atau "tidak memakai")
-- Bagian yang dibantu AI: (kelas/metode)
-- Prompt utama: (tempel 1-3 prompt yang paling menentukan)
-- Yang saya ubah atau tolak dari saran AI, dan alasannya:
-- Satu hal yang saya pahami lebih baik sekarang:
+- Alat yang dipakai: (gpt, gemini,claude")
+- Bagian yang dibantu Ai:(hampir semua)
+- Prompt utama: (jawab pertanyaan ini dengan benar sesuai aturan tugas yang aku mau versii siap salin di vscode )
+- Yang saya ubah atau tolak dari saran AI, dan alasannya: ga sesuai sama yang saya minta
+- Satu hal yang saya pahami lebih baik sekarang: masih bingung
