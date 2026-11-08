@@ -1,0 +1,68 @@
+@startuml
+title Aset-Pinjam Class Diagram
+
+package model {
+  abstract class Aset {
+    -String kode
+    -String nama
+    -StatusAset status
+    -Kondisi kondisi
+    +boolean bisaDipinjam()
+    +abstract long hitungDenda(int hariTerlambat)
+    +JenisAset getJenis()
+  }
+  class Ruang {
+    -int kapasitas
+  }
+  class Laptop {
+    -String spesifikasi
+    -String nomorInventaris
+  }
+  class AlatLab {
+    -String laboratorium
+    -TingkatRisiko tingkatRisiko
+  }
+  class Peminjaman {
+    -String id
+    -LocalDateTime mulai
+    -LocalDateTime selesai
+    +ubahStatus(StatusPeminjaman baru)
+  }
+  class Peminjam {
+    -String id
+    -String nama
+  }
+}
+
+package jadwal {
+  class JadwalPeminjaman {
+    -List<Peminjaman> daftar
+    -int kuotaLaptop
+    +boolean bentrok(Peminjaman baru)
+    +List<Peminjaman> semuaUrutMulai()
+    +Map<String, List<Peminjaman>> perAset()
+    +boolean hapus(String id)
+  }
+}
+
+package denda {
+  class DendaFlat
+  class DendaProgresif
+}
+package kontrak {
+  interface AturanDenda { +long hitung(Aset aset, int hari) }
+  interface DapatDipinjam { +boolean bisaDipinjam() }
+}
+
+Aset <|-- Ruang
+Aset <|-- Laptop
+Aset <|-- AlatLab
+Aset ..|> DapatDipinjam
+AturanDenda <|.. DendaFlat
+AturanDenda <|.. DendaProgresif
+DendaFlat ..> Aset
+DendaProgresif ..> Aset
+JadwalPeminjaman "1" o-- "*" Peminjaman : contains
+Peminjaman "*" --> "1" Aset
+Peminjaman "*" --> "1" Peminjam
+@enduml

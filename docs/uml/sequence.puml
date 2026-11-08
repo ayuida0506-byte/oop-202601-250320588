@@ -1,0 +1,24 @@
+@startuml
+title Pengajuan Peminjaman: Sukses dan Bentrok
+actor Peminjam
+participant JadwalPeminjaman
+participant Peminjaman
+participant Aset
+
+Peminjam -> JadwalPeminjaman : ajukan(peminjaman)
+activate JadwalPeminjaman
+JadwalPeminjaman -> Peminjaman : getAset(), getMulai(), getSelesai()
+Peminjaman --> JadwalPeminjaman : aset dan rentang waktu
+JadwalPeminjaman -> JadwalPeminjaman : bentrok(peminjaman)
+JadwalPeminjaman -> Aset : getKode()
+Aset --> JadwalPeminjaman : kode aset
+alt tidak bentrok dan kuota terpenuhi
+  JadwalPeminjaman -> JadwalPeminjaman : tambah(peminjaman)
+  JadwalPeminjaman --> Peminjam : pengajuan diterima
+else bentrok dengan jadwal aset
+  JadwalPeminjaman --> Peminjam : PeminjamanBentrokException
+else kuota laptop habis
+  JadwalPeminjaman --> Peminjam : KuotaHabisException
+end
+deactivate JadwalPeminjaman
+@enduml

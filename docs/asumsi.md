@@ -16,6 +16,13 @@ Format tiap entri:
 
 ## Aturan ambigu dari docs/aturan-bisnis.md
 
+## A-01: batas waktu bentrok
+- Pertanyaan: Apakah peminjaman 09:00-11:00 dan 11:00-13:00 pada aset yang sama bentrok?
+- Keputusan: Tidak bentrok; rentang diperlakukan sebagai interval setengah terbuka `[mulai, selesai)`.
+- Alasan: Waktu selesai satu peminjaman dapat menjadi waktu mulai peminjaman berikutnya tanpa dua pemakaian aset yang bersamaan.
+- Dampak ke kode: `JadwalPeminjaman.bentrok(Peminjaman)` hanya mengembalikan true saat interval benar-benar beririsan.
+- Tes yang membuktikan: `BatasBentrokTest.selesaiSamaDenganMulai` seharusnya dibuat, tetapi tetap tidak diubah sesuai larangan eksplisit tidak mengubah file tes.
+
 Salin setiap pertanyaan ambigu (nomor 1 sampai 7) ke sini dan jawab. Contoh:
 
 ## A-01: batas waktu bentrok
