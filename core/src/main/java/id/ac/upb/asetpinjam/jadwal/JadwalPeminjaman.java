@@ -2,6 +2,8 @@ package id.ac.upb.asetpinjam.jadwal;
 
 import id.ac.upb.asetpinjam.model.Peminjaman;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,27 +35,41 @@ public class JadwalPeminjaman {
         daftar.add(p);
     }
 
-    /**
-     * TODO minggu 7: true jika {@code baru} bentrok dengan peminjaman yang sudah ada untuk ASET YANG SAMA.
-     * Definisi "bentrok" di batas waktu (selesai sama dengan mulai) adalah KEPUTUSAN ANDA (docs/asumsi.md).
-     */
+    /** True jika peminjaman baru beririsan dengan jadwal aset yang sama. */
     public boolean bentrok(Peminjaman baru) {
-        throw new UnsupportedOperationException("TODO minggu 7: bentrok");
+        for (Peminjaman lama : daftar) {
+            // Rentang yang menyentuh persis di batas tidak dianggap tumpang tindih.
+            boolean asetSama = lama.getAset().getKode().equals(baru.getAset().getKode());
+            boolean waktuBeririsan =
+                    baru.getMulai().isBefore(lama.getSelesai())
+                            && baru.getSelesai().isAfter(lama.getMulai());
+            if (asetSama && waktuBeririsan) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    /** TODO minggu 7: semua peminjaman, diurutkan menurut waktu mulai (gunakan Comparator). */
+    /** Mengembalikan salinan peminjaman yang diurutkan menaik menurut waktu mulai. */
     public List<Peminjaman> semuaUrutMulai() {
-        throw new UnsupportedOperationException("TODO minggu 7: semuaUrutMulai");
+        return daftar.stream()
+                .sorted(Comparator.comparing(Peminjaman::getMulai))
+                .toList();
     }
 
-    /** TODO minggu 7: peminjaman dikelompokkan menurut kode aset. */
+    /** Mengelompokkan peminjaman menurut kode aset. */
     public Map<String, List<Peminjaman>> perAset() {
-        throw new UnsupportedOperationException("TODO minggu 7: perAset");
+        Map<String, List<Peminjaman>> hasil = new LinkedHashMap<>();
+        for (Peminjaman peminjaman : semuaUrutMulai()) {
+            String kodeAset = peminjaman.getAset().getKode();
+            hasil.computeIfAbsent(kodeAset, key -> new ArrayList<>()).add(peminjaman);
+        }
+        return hasil;
     }
 
     /** TODO minggu 7: hapus peminjaman berdasarkan id. True jika ada yang terhapus. */
     public boolean hapus(String id) {
-        throw new UnsupportedOperationException("TODO minggu 7: hapus");
+        return daftar.removeIf(peminjaman -> peminjaman.getId().equals(id));
     }
 
     /**
