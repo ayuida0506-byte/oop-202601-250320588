@@ -31,4 +31,10 @@ public class AlatLab extends Aset {
     public JenisAset getJenis() {
         return JenisAset.ALAT_LAB;
     }
+
+    @Override
+    public long hitungDenda(int hariTerlambat) {
+        // Reuse validasi dan tarif dasar Aset, lalu terapkan multiplier AlatLab.
+        return 4L * super.hitungDenda(hariTerlambat);
+    }
 }

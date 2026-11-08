@@ -22,4 +22,10 @@ public class Ruang extends Aset {
     public JenisAset getJenis() {
         return JenisAset.RUANG;
     }
+
+    @Override
+    public long hitungDenda(int hariTerlambat) {
+        // Ruang memakai multiplier dasar 1, sehingga mengikuti tarif induk.
+        return super.hitungDenda(hariTerlambat);
+    }
 }
