@@ -35,6 +35,6 @@ public class AlatLab extends Aset {
     @Override
     public long hitungDenda(int hariTerlambat) {
         // Reuse validasi dan tarif dasar Aset, lalu terapkan multiplier AlatLab.
-        return 4L * super.hitungDenda(hariTerlambat);
+        return hitungDendaDasar(hariTerlambat, 4L);
     }
 }

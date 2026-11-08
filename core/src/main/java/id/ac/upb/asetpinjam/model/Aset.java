@@ -12,7 +12,7 @@ import id.ac.upb.asetpinjam.config.Varian;
  * Minggu 5: isi bisaDipinjam() dan ubah menjadi class abstrak
  * (TestSupport.aset(...) di folder test menyesuaikan sendiri, lihat docs/minggu-05.md).
  */
-public class Aset implements DapatDipinjam {
+public abstract class Aset implements DapatDipinjam {
 
     // kode tidak memiliki setter karena identitas aset tidak boleh berubah.
     private final String kode;
@@ -74,10 +74,10 @@ public class Aset implements DapatDipinjam {
         this.kondisi = kondisi;
     }
 
-    /** TODO minggu 5: true hanya jika status TERSEDIA dan kondisi bukan RUSAK_BERAT. */
+    /** Status dan kondisi menentukan apakah aset boleh dipinjam. */
     @Override
     public boolean bisaDipinjam() {
-        throw new UnsupportedOperationException("TODO minggu 5");
+        return status == StatusAset.TERSEDIA && kondisi != Kondisi.RUSAK_BERAT;
     }
 
     /** Jenis aset ditentukan oleh subclass berdasarkan tipe runtimenya. */
@@ -85,11 +85,14 @@ public class Aset implements DapatDipinjam {
         throw new UnsupportedOperationException("TODO minggu 3");
     }
 
-    /** Tarif dasar dipakai induk; subclass mengalikan sesuai jenis aset. */
-    public long hitungDenda(int hariTerlambat) {
+    /** Perhitungan denda khusus wajib diimplementasikan setiap jenis aset. */
+    public abstract long hitungDenda(int hariTerlambat);
+
+    /** Membantu subclass menerapkan multiplier pada tarif dasar varian aktif. */
+    protected static long hitungDendaDasar(int hariTerlambat, long multiplier) {
         if (hariTerlambat < 0) {
             throw new IllegalArgumentException("Hari terlambat tidak boleh negatif");
         }
-        return (long) hariTerlambat * Varian.aktif().dendaPerHari;
+        return (long) hariTerlambat * multiplier * Varian.aktif().dendaPerHari;
     }
 }

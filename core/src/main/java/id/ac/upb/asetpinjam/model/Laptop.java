@@ -35,6 +35,6 @@ public class Laptop extends Aset {
     @Override
     public long hitungDenda(int hariTerlambat) {
         // Reuse validasi dan tarif dasar Aset, lalu terapkan multiplier Laptop.
-        return 2L * super.hitungDenda(hariTerlambat);
+        return hitungDendaDasar(hariTerlambat, 2L);
     }
 }

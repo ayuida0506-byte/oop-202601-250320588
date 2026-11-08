@@ -25,7 +25,7 @@ public class Ruang extends Aset {
 
     @Override
     public long hitungDenda(int hariTerlambat) {
-        // Ruang memakai multiplier dasar 1, sehingga mengikuti tarif induk.
-        return super.hitungDenda(hariTerlambat);
+        // Ruang memakai multiplier 1 dari tarif dasar varian.
+        return hitungDendaDasar(hariTerlambat, 1L);
     }
 }

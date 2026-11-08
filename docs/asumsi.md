@@ -27,4 +27,11 @@ Salin setiap pertanyaan ambigu (nomor 1 sampai 7) ke sini dan jawab. Contoh:
 
 ## Asumsi lain
 
+## A-08: Rumus denda progresif
+- Pertanyaan: Bagaimana menghitung DendaProgresif tanpa melanggar aturan tidak turun dan selalu paling tidak sama dengan flat?
+- Keputusan: `progresif = flat + (flat * hariTerlambat / 30)` untuk hari 1 sampai 30.
+- Alasan: Rumus linear menentukan nilai hari ke-30 sebesar dua kali flat dan tetap tidak turun saat hari bertambah; pembulatan integer menjaga hasil rupiah.
+- Dampak ke kode: `DendaProgresif.hitung(Aset, int)` dan validasi hari diwarisi dari `aset.hitungDenda(hari)`.
+- Tes yang membuktikan: `Minggu05AbstraksiTest.dendaProgresifMemenuhiSyaratMinimal`.
+
 Tambahkan di sini keputusan lain yang Anda ambil: rumus denda progresif, perubahan skema database, format error API, dan seterusnya.
